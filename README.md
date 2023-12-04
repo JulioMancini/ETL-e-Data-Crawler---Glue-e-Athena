@@ -91,4 +91,42 @@ Nessa etapa ele pede um database, coloquei o database que criei chamado de Venda
 
 Deixei a opção Frequency sobe demanda ( on demand ) e passei para a próxima e última etapa, que é a de revisão e criação. Apos a criação coloquei ele para executar.
 
+# CRIANDO O JOB
 
+Agora vou fazer a transformação dos dados. Para isso vou na área do Glue integração de dados e ETL, na opção Jobs. Nessa ferramenta ele abre uma interface onde eu posso escolher a forma que vou criar o job e a forma de transformação.
+Nessa opção da ferramenta tenho alguma opções para o processo de ETL como: editor de código do Spark, editor de código do do Python, Jupyter Notebook, mas vou utilizar o Editor visual com Canvas em branco. Escolhi essa opção pela sua flexibilidade.
+
+* O meu objetivo é pegar as cinco tabelas e criar uma tabela única.
+
+![15](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/7eb0a2da-794f-4f90-802d-48aadc363960)
+
+O primeiro passo é indicar a fonte dos dados, nesse caso a origem aqui é uma tabela que vem do catálogo de dados do Glue.
+
+![16](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/3849e648-02ac-4212-855e-fd1d51b8ba36)
+
+
+Cada elemento criados nessa ferramenta são chamados de nó, para cada nó eu tenho propriedades dos dados e o esquema de entrada e saída. O primeiro nó vou chamar de vendas e informar a fonte dos dados. Nesse caso vou informar o Data base que eu criei chamado de Vendas. Ou seja, todas as tabelas estão associadas a Vendas. A tabela desse primeiro nó vai ser o Vendas CSV.
+
+![17](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/2728b496-01ce-4505-8dad-7ef01fcccefb)
+
+Para esse nó vou adicionar um elemento de transformação, Como é um pipeline os elementos ficam vinculados entre eles. (Então eu vou selecionar para essa opção a opção de Apply Mapping).
+
+* Observação sobre a ferramenta: É importante manter o elemento selecionado para ele fazer o link entre eles automático.
+
+![18](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/809abae9-03ad-4c93-b98c-2746225eb06e)
+
+Uma observação muito importante.  É que eu posso ter problemas com os jobs quando eu tiver campos repetidos. E se você olhar o nosso esquema de dados, vamos ter nomes repetidos quando  tem chave estrangeira. Então, quando eu fizer um job pode ter problema com o campo dos nomes que vai ser o mesmo. Para resolver isso vou alterar os nomes das colunas desse campo nas tabelas.
+
+Então, no Apply Mapping renomeei para Vendas Mapping e mudei o nome do Idvendedor e Idcliente
+
+![19](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/2e2fefc9-9c8c-47bf-bcca-d346aa74668a)
+
+Então eu cliquei  em uma área branca do workflow pra ele não vincular com nada. E  adicionei  uma nova origem que chamei de itens venda. Mantive o mesmo processo do nó anterior. 
+
+![20](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/89071b84-aa98-4e6d-bcbb-2731530dc332)
+
+Novamente no Apply Mapping renomeei duas colunas diferentes, renomeei o Idproduto e o Idvenda.
+
+![21](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/5a05c639-0637-4c02-a590-2e103720ed1f)
+
+A próxima etapa são os Joins, vou fazer o join de vendas com clientes, o jovem de vendas com o  itensvendas vendas, o join de vendas com vendedores e o join de itens venda com produtos.
