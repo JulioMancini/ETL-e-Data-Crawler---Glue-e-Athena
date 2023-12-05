@@ -144,6 +144,8 @@ O primeiro join vai ser a partir do vendasMapping. Essa ferramenta é muito fác
 Agora vou configurar ele, na aba Node Properties eu renomeei para joinvendas_itensvendas. 
 É importante saber que por ser um join, eu tenho que selecionar dois nós, porque ele vai fazer o join entre esses dois nós. Então nessa mesma aba na opção Node parentes selecionei o intensvendaMapping.
 
+![23](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/adc42365-8a75-4199-8b77-dc3bfb202c13)
+
 **NOTE PROPERTIES**
 
 **NAME**: joinvendas_itensvendas
@@ -152,4 +154,16 @@ Agora vou configurar ele, na aba Node Properties eu renomeei para joinvendas_ite
 
 **NODE PARENTES**: selecionei VendasMapping e intensvendaMapping
 
-![23](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/adc42365-8a75-4199-8b77-dc3bfb202c13)
+A próxima opção de configuração se chama: transforms. Essa opção serve para selecionar o tipo de join que vou utilizar, nesse caso vou utilizar o inner join. Também tenho que adicionar uma condição. Ou seja, ele vai fazer junção do join através de dois campos. 
+
+![24](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/92111da0-e175-4af4-937c-e554f2c32221)
+
+**TRANSFORMS**
+
+**JOIN TYPE**: Inner Join
+
+**JOIN CONDITIONS**: idvenda e idvenda_itensvendas
+
+
+
+
