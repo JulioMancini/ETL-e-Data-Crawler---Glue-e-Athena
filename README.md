@@ -13,6 +13,11 @@ Projeto com o objetivo de criar um Datalake com dados de vendas para consulta.
 * criar banco de dados e Crawler para o Data Lake
 * Configurar Athena para Realizar Consultas no Data Lake
 
+# Modelo Conceitual
+
+![modelo dos dados](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/cf31c01b-6930-480e-9686-7ae14effe5fb)
+
+
 # IAM PARA O GLUE
 
 Vpu criar aqui uma função de administrador especificamente para o serviço do Glue. A primeiro coisa vou fazer é ir no site da AWS: `https://aws.amazon.com/pt/iam/` e procurar no barra de pesquisa por IAM.
@@ -129,4 +134,22 @@ Novamente no Apply Mapping renomeei duas colunas diferentes, renomeei o Idprodut
 
 ![21](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/5a05c639-0637-4c02-a590-2e103720ed1f)
 
-A próxima etapa são os Joins, vou fazer o join de vendas com clientes, o jovem de vendas com o  itensvendas vendas, o join de vendas com vendedores e o join de itens venda com produtos.
+A próxima etapa são os Joins, vou fazer o join de vendas com clientes, o jovem de vendas com o itensvendas vendas, o join de vendas com vendedores e o join de itens venda com produtos. Vou fazer o join a partir dos dados já transformados. 
+
+O primeiro join vai ser a partir do vendasMapping. Essa ferramenta é muito fácil de utilizar. basta manter o vendasmapping selecionado ir em transform e procurar por join.
+
+![22](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/6c91d4c4-1989-4c1e-8292-2f5675b1c420)
+
+
+Agora vou configurar ele, na aba Node Properties eu renomeei para joinvendas_itensvendas. 
+É importante saber que por ser um join, eu tenho que selecionar dois nós, porque ele vai fazer o join entre esses dois nós. Então nessa mesma aba na opção Node parentes selecionei o intensvendaMapping.
+
+**NOTE PROPERTIES**
+
+**NAME**: joinvendas_itensvendas
+
+**NODE TYPE**: join
+
+**NODE PARENTES**: selecionei VendasMapping e intensvendaMapping
+
+![23](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/adc42365-8a75-4199-8b77-dc3bfb202c13)
