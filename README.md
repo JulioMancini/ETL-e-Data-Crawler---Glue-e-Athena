@@ -149,13 +149,6 @@ Agora vou configurar ele, na aba Node Properties eu renomeei para joinvendas_ite
 
 A próxima opção de configuração se chama: transforms. Essa opção serve para selecionar o tipo de join que vou utilizar, nesse caso vou utilizar o inner join. Também tenho que adicionar uma condição. Ou seja, ele vai fazer junção do join através de dois campos. 
 
-CONFIGURAÇÃO DO SOURCE (AWS GLUE DATA CATALOG) Produtos
-| NODE PROPERTIES | DATA SOURSE PROPERTIES – DATA CATALOG
-|--|--|
-| NOME: VEndas| DATABASE: Vendas|
-|NODE TYPE: AWS Glue Data Catalog| TABLE: Vendas_CSV|
-
-**CONFIGURAÇÃO do JOIN VENDAS**
 
 | NODE PARENTES | TRANSFORMS |
 |-|-|
@@ -168,7 +161,7 @@ CONFIGURAÇÃO DO SOURCE (AWS GLUE DATA CATALOG) Produtos
 
 O próximo nó vou seguir o processo dos anteriores. Vou no SOURCE  procuro a opção AWS GLUE DATA CATALOG. Para configurar  basta renomear, definir o Database e a respectiva tabela com o nome de Clientes_CSV. Feito isso agora é so adicionar uma transformação (join) unindo com joinvendas_intesvendas 
 
-CONFIGURAÇÂO DE Clientes
+**CONFIGURAÇÂO DE Clientes**
 
 CONFIGURAÇÃO DO SOURCE (AWS GLUE DATA CATALOG) Clientes
 | NODE PROPERTIES | DATA SOURSE PROPERTIES – DATA CATALOG
