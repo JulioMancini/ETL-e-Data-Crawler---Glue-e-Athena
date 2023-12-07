@@ -209,5 +209,25 @@ CONFIGURAÇÃO do JOIN VENDEDORES
 |NODE TYPE: Inner Join|JOIN CONDITIONS: Idvendedor e Idvendedor_vendas |
 |NODE PARENTES: Vendedores e Joinprodutos|-------------------| 
 
+As Ligaçoes dos Nós ficaram conforme a imagem
+
+![26](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/c5b930b9-d20c-4f84-a0af-4bf270ead415)
+
+Com o Joinvendedores selecionado coloquei um Apply Mapping, renomeei ele de Colunas finais na aba de transformação exclui as os campos ID. 
+
+![27](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/a4316a25-f2c1-47de-b8b3-d53a53ab04d6)
+
+Com as colunas finas selecionada fui para o Target e selecionei o Amazon S3. A cesseão do TARGET LOCATION voltei para o S3 e copiei a URL da pasta para anexar nas configurações. 
+
+![29](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/5499dd22-be01-4376-9a34-d906e1960aae)
+
+**CONFIGURAÇÃO do S3**
+
+|**NODE PROPERTIES**|
+|--|
+|FORMAT: Parquet|
+|COMPRESSION TYPE: SNAPPY|
+|TARGET LOCATION: S3//datalake567/datalake|
+|DATA CATALOG UPDATE OPTIONS: Do not update|
 
 
