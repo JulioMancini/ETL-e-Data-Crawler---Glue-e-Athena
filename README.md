@@ -142,28 +142,79 @@ O primeiro join vai ser a partir do vendasMapping. Essa ferramenta é muito fác
 
 
 Agora vou configurar ele, na aba Node Properties eu renomeei para joinvendas_itensvendas. 
-É importante saber que por ser um join, eu tenho que selecionar dois nós, porque ele vai fazer o join entre esses dois nós. Então nessa mesma aba na opção Node parentes selecionei o intensvendaMapping.
+É importante saber que por ser um join, eu tenho que selecionar dois nós, porque ele vai fazer o join entre esses dois nós. Então nessa mesma aba na opção Node parentes selecionei o intensvendaMapping. A próxima opção de configuração se chama: transforms. Essa opção serve para selecionar o tipo de join que vou utilizar, nesse caso vou utilizar o inner join. Também tenho que adicionar uma condição. Ou seja, ele vai fazer junção do join através de dois campos. 
 
 ![23](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/adc42365-8a75-4199-8b77-dc3bfb202c13)
 
-**NOTE PROPERTIES**
-
-**NAME**: joinvendas_itensvendas
-
-**NODE TYPE**: join
-
-**NODE PARENTES**: selecionei VendasMapping e intensvendaMapping
 
 A próxima opção de configuração se chama: transforms. Essa opção serve para selecionar o tipo de join que vou utilizar, nesse caso vou utilizar o inner join. Também tenho que adicionar uma condição. Ou seja, ele vai fazer junção do join através de dois campos. 
 
+CONFIGURAÇÃO DO SOURCE (AWS GLUE DATA CATALOG) Produtos
+| NODE PROPERTIES | DATA SOURSE PROPERTIES – DATA CATALOG
+|--|--|
+| NOME: VEndas| DATABASE: Vendas|
+|NODE TYPE: AWS Glue Data Catalog| TABLE: Vendas_CSV|
+
+**CONFIGURAÇÃO do JOIN VENDAS**
+
+| NODE PARENTES | TRANSFORMS |
+|-|-|
+|**NAME**: joinvendas_itensvendas| **JOIN TYPE**: Inner Join|
+|**NODE TYPE**: Inner Join| **JOIN CONDITIONS**: idvenda e idvenda_itensvendas |
+|**NODE PARENTES**: VendasMapping e intensvendaMapping|-------------------|
+
 ![24](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/92111da0-e175-4af4-937c-e554f2c32221)
 
-**TRANSFORMS**
 
-**JOIN TYPE**: Inner Join
+O próximo nó vou seguir o processo dos anteriores. Vou no SOURCE  procuro a opção AWS GLUE DATA CATALOG. Para configurar  basta renomear, definir o Database e a respectiva tabela com o nome de Clientes_CSV. Feito isso agora é so adicionar uma transformação (join) unindo com joinvendas_intesvendas 
 
-**JOIN CONDITIONS**: idvenda e idvenda_itensvendas
+CONFIGURAÇÂO DE Clientes
 
+CONFIGURAÇÃO DO SOURCE (AWS GLUE DATA CATALOG) Clientes
+| NODE PROPERTIES | DATA SOURSE PROPERTIES – DATA CATALOG
+|--|--|
+| NOME: Clientes| DATABASE: Vendas|
+|NODE TYPE: AWS Glue Data Catalog| TABLE:  Clientes_CSV|
+
+CONFIGURAÇÃO do JOIN CLIENTES
+| NODE PARENTES | TRANSFORMS |
+|-|-|
+|NAME: Joinclientes |JOIN TYPE: Inner Join|
+|NODE TYPE: Inner Join|JOIN CONDITIONS: Idcliente e Idclientes_vendas |
+|NODE PARENTES: Clientes e Joinvendas_itensvendas|-------------------|
+
+Agora fica faltando Produtos e vendedores, vou continuar na mesma linha de configuração. 
+
+
+**CONFIGURAÇÂO de PRODUTOS**
+
+CONFIGURAÇÃO DO SOURCE (AWS GLUE DATA CATALOG) Produtos
+| NODE PROPERTIES | DATA SOURSE PROPERTIES – DATA CATALOG
+|--|--|
+| NOME: Produtos| DATABASE: Vendas|
+|NODE TYPE: AWS Glue Data Catalog| TABLE:  Produtos_CSV|
+
+CONFIGURAÇÃO do JOIN PRODUTOS
+| NODE PARENTES | TRANSFORMS |
+|-|-|
+|NAME: Joinprodutos |JOIN TYPE: Inner Join|
+|NODE TYPE: Inner Join|JOIN CONDITIONS: Idproduto e Idproduto_intesvendas |
+|NODE PARENTES: Produtos e Joinclientes |-------------------|
+
+**CONFIGURAÇÂO de VENDEDORES**
+
+CONFIGURAÇÃO DO SOURCE (AWS GLUE DATA CATALOG) VENDEDORES
+| NODE PROPERTIES | DATA SOURSE PROPERTIES – DATA CATALOG
+|--|--|
+| NOME: Vendedores| DATABASE: Vendas|
+|NODE TYPE: AWS Glue Data Catalog| TABLE:  Vendedores_CSV|
+
+CONFIGURAÇÃO do JOIN VENDEDORES
+| NODE PARENTES | TRANSFORMS |
+|-|-|
+|NAME: Joinvendedores |JOIN TYPE: Inner Join|
+|NODE TYPE: Inner Join|JOIN CONDITIONS: Idvendedor e Idvendedor_vendas |
+|NODE PARENTES: Vendedores e Joinprodutos|-------------------| 
 
 
 
