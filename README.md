@@ -221,13 +221,26 @@ Com as colunas finas selecionada fui para o Target e selecionei o Amazon S3. A c
 
 ![29](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/5499dd22-be01-4376-9a34-d906e1960aae)
 
-**CONFIGURAÇÃO do S3**
+**CONFIGURAÇÃO DO TARGET S3**
 
-|**NODE PROPERTIES**|
-|--|
-|FORMAT: Parquet|
-|COMPRESSION TYPE: SNAPPY|
-|TARGET LOCATION: S3//datalake567/datalake|
-|DATA CATALOG UPDATE OPTIONS: Do not update|
+|**NODE PROPERTIES**|**DATA TARGAT**|
+|--|--|
+|NAME: Datalake|FORMAT: Parquet|
+|NODE TYPE: Amazon S3|COMPRESSION TYPE: SNAPPY|
+|NODE PARENTS: ColunasFinais |TARGET LOCATION: S3//datalake567/datalake|
+|----------------|DATA CATALOG UPDATE OPTIONS: Do not update|
+|-----------------|PARTITIONS: Status|
 
+Agora fica faltando só algumas informações no Job Details. Por isso que ele está sinalizando em vermelho.
 
+![30](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/e9711885-e15b-4531-b309-be256d3bc88d)
+
+Muitos dos parâmetros nessas configuração eu não mudei, deixei como padrão. O primeiro parâmetro é para informar a IAM que criei. Depois de informar fui para as propriedades avançadas. 
+
+![31](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/c52c23ed-c021-4a8e-a177-409fa36a2105)
+
+Para o script Path eu criei uma pasta para ele no S3 chamada de Scripts, então eu voltei para o S3 e copiei a URL da pasta.
+
+![32](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/3829c08f-fb3b-4e67-acbd-b8ae133bfabb)
+
+ A mesma coisa com o parâmetro logs Path, eu criei uma pasta para ele no S3, então eu fiz o mesmo processo, voltei no S3 copiei a URL da pasta para preencher o parâmetro. 
