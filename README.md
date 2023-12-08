@@ -227,7 +227,7 @@ Com as colunas finas selecionada fui para o Target e selecionei o Amazon S3. A c
 |--|--|
 |NAME: Datalake|FORMAT: Parquet|
 |NODE TYPE: Amazon S3|COMPRESSION TYPE: SNAPPY|
-|NODE PARENTS: ColunasFinais |TARGET LOCATION: S3//datalake567/datalake|
+|NODE PARENTS: ColunasFinais |TARGET LOCATION: S3//datalake567/datalake|(URL)
 |----------------|DATA CATALOG UPDATE OPTIONS: Do not update|
 |-----------------|PARTITIONS: Status|
 
@@ -243,4 +243,4 @@ Para o script Path eu criei uma pasta para ele no S3 chamada de Scripts, então 
 
 ![32](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/3829c08f-fb3b-4e67-acbd-b8ae133bfabb)
 
- A mesma coisa com o parâmetro logs Path, eu criei uma pasta para ele no S3, então eu fiz o mesmo processo, voltei no S3 copiei a URL da pasta para preencher o parâmetro. 
+ A mesma coisa com o parâmetro logs Path e Temporary Path, eu criei uma pasta para eles no S3, então eu fiz o mesmo processo, voltei no S3 copiei a URL das pasta para preencher o parâmetro. 
