@@ -243,4 +243,20 @@ Para o script Path eu criei uma pasta para ele no S3 chamada de Scripts, então 
 
 ![32](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/3829c08f-fb3b-4e67-acbd-b8ae133bfabb)
 
- A mesma coisa com o parâmetro logs Path e Temporary Path, eu criei uma pasta para eles no S3, então eu fiz o mesmo processo, voltei no S3 copiei a URL das pasta para preencher o parâmetro. 
+ A mesma coisa com o parâmetro logs Path e Temporary Path, eu criei uma pasta para eles no S3, então eu fiz o mesmo processo, voltei no S3 copiei a URL das pasta para preencher o parâmetro. Por último é só salvar e executar (RUN).
+
+ # CONFIGURANDO ATHENA PARA CONSULTAS
+
+ Comecei criando um data base, igual eu fiz anteriormente. Fui até a opção Databases do Glue, dei o nome de Vendas_datalake.
+
+![33](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/7ac0f147-a3f5-4914-b901-3b93dbdc6e07)
+
+A pasta que eu informei para o Crawler é a pasta raiz. Eu não vou informar dentro das partições porque o próprio Crawler vai enderder que isso é um particionamento.
+
+![34](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/70cf351b-0216-4623-a937-2f804f5723fa)
+
+Na etapa três eu informei o IAM, informei o mesmo que eu criei lá no começo. Na próxima etapa informei o datalake, dessa vez informei o Vendas_Datalake que foi o mais recente que criei. Então é só revisar e executar o Crawler. Agora estou pronto para executar esses dados no Athena.
+
+Para acessar o Athena:` https://aws.amazon.com/pt/athena/`
+
+Ao Abrir o Athena a primeira coisa a se fazer é ir em Settings, ir em Manege. E informar um bucket com uma pasta para ele usar como local temporário. Caso contrário, o Athena não vai permitir executar consultas. 
