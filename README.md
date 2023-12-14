@@ -260,3 +260,9 @@ Na etapa três eu informei o IAM, informei o mesmo que eu criei lá no começo. 
 Para acessar o Athena:` https://aws.amazon.com/pt/athena/`
 
 Ao Abrir o Athena a primeira coisa a se fazer é ir em Settings, ir em Manege. E informar um bucket com uma pasta para ele usar como local temporário. Caso contrário, o Athena não vai permitir executar consultas. 
+
+Voltando para o Athena, aqui tenho um ambiente onde eu posso rodar consultas. No editor, temos o Data Source que é o catálogo que o próprio Glue cria e o Database  que possui os dois databases que eu criei, o de Vendas que é os arquivos CSV e o Vendas_datalake que é o catálogo criado com os pacotes adicionados no S3.
+
+![35](https://github.com/JulioMancini/ETL-e-Data-Crawler-Glue-e-Athena/assets/145502330/45e2b62e-acab-4c80-a62d-93bd65ea4e1f)
+
+Agora posso rodas as consultas e salvar em CSV. 
